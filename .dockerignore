@@ -1,0 +1,13 @@
+__pycache__/
+.venv/
+.env
+chroma_db/
+Evaluation/
+Frontend/
+*.pyc
+.git/
+.gitignore
+dep.txt
+gemini_Test.py
+main.py
+requirements.txt
