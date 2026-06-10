@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://localhost:8000"
+API_URL = "https://youtube-video-rag-34pu.onrender.com"
 
 st.set_page_config(
     page_title="YouTube RAG",
