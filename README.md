@@ -40,7 +40,8 @@ Chat with any YouTube video. Paste a link, ask a question, and get answers groun
 
 - **Ingest any public YouTube video** by URL — its transcript is fetched and indexed automatically.
 - **Ask natural-language questions** about the video and get answers grounded in the actual transcript.
-- **Hybrid retrieval** combining dense vector search (Chroma) with sparse keyword search (BM25) for better recall.
+- **Multi-Query Retriever** generates diverse query perspectives for broader and more robust recall.
+- **Hybrid retrieval** combining dense vector search (Chroma) with sparse keyword search (BM25) for precision matching.
 - **Reranking with Cohere** to keep only the most relevant passages before generation.
 - **Multi-turn conversation memory** — follow-up questions retain context.
 - **Clear chat** or **reset session** controls to start fresh with a new video.
@@ -49,7 +50,7 @@ Chat with any YouTube video. Paste a link, ask a question, and get answers groun
 ## How It Works
 
 1. **Ingest** — you submit a YouTube URL. The backend fetches the transcript, splits it into chunks, embeds them, and stores them in a Chroma vector store.
-2. **Retrieve** — when you ask a question, candidate passages are pulled using hybrid search: dense vector similarity plus BM25 keyword matching.
+2. **Retrieve** — the query is expanded via a **Multi-Query Retriever** into multiple perspectives, then candidate passages are pulled using hybrid search (dense vector similarity plus BM25 keyword matching).
 3. **Rerank** — the candidates (`k=10`) are reranked with Cohere Rerank down to the most relevant ones (`top_n=8`).
 4. **Generate** — the reranked passages, your question, and the running chat history are sent to the LLM (Qwen2.5-7B-Instruct, served via a Hugging Face Inference Endpoint) to produce a grounded answer.
 5. The whole chain is orchestrated with **LangGraph**, and conversation history is tracked server-side so follow-up questions work naturally.
