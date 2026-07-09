@@ -62,8 +62,8 @@ flowchart TD
     D --> E[(Chroma Vector Store)]
 
     Q[User Question] --> T[Query Enhancer]
-    t --> O[Multi Query Retriver]
-    H["Hybrid Retrieval:<br/>Vector Search + BM25"]
+    T --> O[Multi Query Retriver]
+    O --> H["Hybrid Retrieval:<br/>Vector Search + BM25"]
     E --> H
     H --> R["Cohere Rerank<br/>k=10 to top_n=8"]
     R --> L["LLM: Qwen2.5-7B-Instruct<br/>via HF Inference Endpoint"]
